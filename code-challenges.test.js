@@ -17,34 +17,51 @@
 
 // a) Create a test with an expect statement using the variable provided.
 
-// describe("theHeartOfGold", () => {
-//   it("takes in an array of objects and returns an array with a sentence about each person with their name capitalized", () => {
-//     const people = [
-//       { name: "ford prefect", occupation: "a hitchhiker" },
-//       { name: "zaphod beeblebrox", occupation: "president of the galaxy" },
-//       { name: "arthur dent", occupation: "a radio employee" }
-//     ]
-//     expect(theHeartOfGold(people)).toEqual(["Ford Prefect is a hitchhiker.", "Zaphod Beeblebrox is president of the galaxy.", "Arthur Dent is a radio employee."])
-//   })
-// })
+describe("theHeartOfGold", () => {
+  it("takes in an array of objects and returns an array with a sentence about each person with their name capitalized", () => {
+    const people = [
+      { name: "ford prefect", occupation: "a hitchhiker" },
+      { name: "zaphod beeblebrox", occupation: "president of the galaxy" },
+      { name: "arthur dent", occupation: "a radio employee" }
+    ]
+    expect(theHeartOfGold(people)).toEqual(["Ford Prefect is a hitchhiker.", "Zaphod Beeblebrox is president of the galaxy.", "Arthur Dent is a radio employee."])
+  })
+})
 
 // RED: ReferenceError: theHeartOfGold is not defined
 // Test failed successfully.
 
 // b) Create the function that makes the test pass.
 
-// .map() over the array and call the object keys i.e. "array.map(value => value.animal === "dog")"
+// Bear with me. Go stretch or get some water or something.
 
-// const theHeartOfGold = (array) => {
-//   //   arr will return: [
-//   //   [ 'ford', 'prefect' ],
-//   //   [ 'zaphod', 'beeblebrox' ],
-//   //   [ 'arthur', 'dent' ]
-//   // ]
-//   // Within the array are three arrays with 2 strings each.
-//   let arr = array.map(value => value.name.split(" "))
+// this function takes an array of objects
+function theHeartOfGold(obj) {
+  // bigArr takes the input and splits the names => [[ 'ford', 'prefect' ],[ 'zaphod', 'beeblebrox' ],[ 'arthur', 'dent' ]]
+  let bigArr = obj.map(value => value.name.split(" "))
+  // upper will capitalize the first letter in an array
+  let upper = (obj) => {
+    for (let i = 0; i < obj.length; i++) {
+      obj[i] = obj[i].charAt(0).toUpperCase() + obj[i].slice(1)
+    }
+    return obj
+  }
+  // matrixArr represents capitalizing the first letter of each name using 'upper' => [[ 'Ford', 'Prefect' ], [ 'Zaphod', 'Beeblebrox' ], [ 'Arthur', 'Dent' ]]
+  let matrixArr = bigArr.map(value => upper(value))
+  // bigJob represents an array of the occupations => [ 'a hitchhiker', 'president of the galaxy', 'a radio employee' ]
+  let bigJob = obj.map(value => value.occupation)
+  // newArray will hold the results of all this mess mushed together
+  let newArr = []
+  // this for loop iterates over the arrays joining the first and last names into a string, embedding it into a template literal, along with returning job.
+  for (let i = 0; i < matrixArr.length; i++) {
+    newArr.push(`${matrixArr[i].join(" ")} is ${bigJob[i]}.`)
+  }
+  // in the end, newArr will hold an array of 3 strings to be expected => ['Ford Prefect is a hitchhiker.', 'Zaphod Beeblebrox is president of the galaxy.', 'Arthur Dent is a radio employee.']
+  return newArr
+}
 
-// }
+// GREEN: Test passed.
+// REFACTOR:
 
 // --------------------2) Create a function that takes in a mixed data array and returns an array of only the REMAINDERS of the numbers when divided by 3.
 
