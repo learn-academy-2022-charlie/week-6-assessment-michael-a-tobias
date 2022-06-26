@@ -62,6 +62,7 @@ function theHeartOfGold(obj) {
 
 // GREEN: Test passed.
 // REFACTOR:
+// I tried to refactor, but I can't make sense of how to turn my for loops into an iterating method using .map and nest them together. I think even if I had everything in nested .maps, it wouldn't be easy to debug or even tell what is going on.
 
 // --------------------2) Create a function that takes in a mixed data array and returns an array of only the REMAINDERS of the numbers when divided by 3.
 
